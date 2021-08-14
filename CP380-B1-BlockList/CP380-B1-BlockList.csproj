@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>CP380_B1_BlockList</RootNamespace>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+</Project>
