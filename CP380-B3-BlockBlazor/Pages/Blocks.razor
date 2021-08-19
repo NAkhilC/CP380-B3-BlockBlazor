@@ -6,12 +6,12 @@
 
 <h3>Blocks</h3>
 
-@if (blocklist == null)
+@if (Blocklist == null)
 {
     <p><em>Loading...</em></p>
 }
 else
-{ int a = 1;
+{ var POSITION = 1;
     <table class="table">
         <thead>
             <tr>
@@ -23,18 +23,18 @@ else
         </thead>
         <tbody>
 
-            @foreach (var abc in blocklist)
+            @foreach (var det in Blocklist)
             {
 
                 <tr>
-                    <td>@a</td>
-                    <td> @abc.hash</td>
-                    <td> @abc.nonce</td>
-                    <td> @abc.previousHash</td>
+                    <td>@POSITION</td>
+                    <td> @det.Hash</td>
+                    <td> @det.Nonce</td>
+                    <td> @det.PreviousHash</td>
                 </tr>
 
 
-                a++;
+                POSITION++;
             }
         </tbody>
         <!-- TODO: Add cards for each block in the block list
@@ -50,10 +50,10 @@ else
 }
 
 @code {
-    IEnumerable<CP380_B1_BlockList.Models.Block> blocklist;
+    IEnumerable<CP380_B1_BlockList.Models.Block> Blocklist;
 
     protected override async Task OnInitializedAsync()
     {
-        blocklist = await _services.GetBlocks();
+        Blocklist = await _services.Get();
     }
 }

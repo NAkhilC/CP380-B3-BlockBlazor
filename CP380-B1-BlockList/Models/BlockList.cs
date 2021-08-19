@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CP380_B1_BlockList.Models
 {
@@ -24,34 +25,23 @@ namespace CP380_B1_BlockList.Models
 
         public void AddBlock(Block block)
         {
-            Block blockva = GetBlock();
-            block.nonce = blockva.nonce + 1;
-            block.previousHash = blockva.hash;
-            block.Mine(this.Difficulty);
+            var previousBlock = Chain.Last();
+            block.PreviousHash = previousBlock.Hash;
+            block.Mine(Difficulty);
             Chain.Add(block);
         }
 
-        public Block GetBlock()
-        {
-            //get the last value in the chain
-            return Chain[Chain.Count - 1];
-        }
-       
-
         public bool IsValid()
         {
-            Console.WriteLine(Chain.Count);
-            for (int i = 1; i < Chain.Count; i++)
+
+            if (Chain[0].difval() != Difficulty)
             {
-                Block firstblock = Chain[i];
-                Block last = Chain[i - 1];
+                return false;
+            } 
 
-                if (firstblock.hash != firstblock.CalculateHash())
-                {
-                    return false;
-                }
-
-                if (firstblock.previousHash != last.hash)
+            for (int i = 1; i < Chain.Count(); i++)
+            {
+                if (Chain[i - 1].Hash != Chain[i].PreviousHash || Chain[i].difval() != Difficulty)
                 {
                     return false;
                 }

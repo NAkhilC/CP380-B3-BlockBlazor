@@ -43,11 +43,11 @@ namespace CP380_B3_BlockBlazor.Data
             httpClient = httpClientFactory.CreateClient();
             config = configuration.GetSection("PendingTransactionService");
         }
-        public async Task<IList<Payload>> GetPending()
+        public async Task<IList<Payload>> GetP()
         {
 
             var request = new HttpRequestMessage(HttpMethod.Get,
-            "http://localhost:5000/PendingPayloads");
+            "http://localhost:5000/getpending");
             var response = await httpClient.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {

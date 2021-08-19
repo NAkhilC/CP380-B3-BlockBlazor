@@ -9,14 +9,14 @@ namespace CP380_B1_BlockList
     {
         static void Main(string[] args)
         {
+            Console.WriteLine($"{ new DateTime(2021, 7, 21, 1, 14, 10):yyyy-MM-dd h:m:s tt}");//2021-07-21 1:14:10 AM
+
             var myChain = new BlockList();
 
             List<Payload> data = new()
             { 
                 new Payload("user", TransactionTypes.GRANT, 10, null), 
                 new Payload("user", TransactionTypes.BUY, 10, "10C"),
-                new Payload("user", TransactionTypes.BUY, 10, "10Ckkk"),
-                new Payload("user", TransactionTypes.SELL, 100, "1009C"),
             };
 
             var block = new Block(DateTime.Now, "", data);
